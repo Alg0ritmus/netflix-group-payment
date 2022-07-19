@@ -16,7 +16,7 @@ def index(request):
         }
     return render(request,"mymoney/main.html",context)
 
-@only_w_permission
+#@only_w_permission
 def dash_board_get_Vydavky(request, vydavky_id):
     try:
         list_of_vydavky = Vydavky.objects.all()
@@ -35,7 +35,7 @@ def dash_board_get_Vydavky(request, vydavky_id):
     except:
         raise Http404("Nome kind of problem")
 
-@only_w_permission
+#@only_w_permission
 def pridaj_vydavky(request):
     if request.method == 'POST' and len((request.POST['vydavky']).strip(" "))>0:
         #request.POST['vydavky']
@@ -44,7 +44,7 @@ def pridaj_vydavky(request):
         
     return redirect("../vydavky/1")
 
-@only_w_permission
+#@only_w_permission
 def pridaj_polozky(request,pridaj_polozky_id):
     if request.method == 'POST':
         selected_object = Vydavky.objects.get(pk=pridaj_polozky_id)
@@ -63,7 +63,7 @@ def pridaj_polozky(request,pridaj_polozky_id):
             return HttpResponse('<h1>Insufficient permission!</h1>')
     return redirect("../../vydavky/"+str(pridaj_polozky_id))
 
-@only_w_permission
+#@only_w_permission
 def vymaz_polozky(request,vymaz_polozky_id):
     if request.method == 'DELETE':
         request.method = 'GET'
@@ -75,7 +75,7 @@ def vymaz_polozky(request,vymaz_polozky_id):
            
             return HttpResponse('<h1>Insufficient permission!</h1>')
 
-@only_w_permission
+#@only_w_permission
 def uprav_polozky(request,edit_polozky_id):
     selected_object = Polozka.objects.get(pk=edit_polozky_id)
     if request.method == 'POST':
