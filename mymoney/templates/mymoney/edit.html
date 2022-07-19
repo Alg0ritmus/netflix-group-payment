@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'mymoney/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>mobile view</title>
+</head>
+<body>
+    
+    <div id="header">
+        <div class="logo">
+            <h1>PZ</h1>
+        </div>
+    </div>
+
+    <div id="body">
+            <div class="add-area">
+                <div class="form-field">
+                    <form action="{% url 'mymoney:uprav_polozky' selected_object.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="suma" placeholder="Suma:" value="{{selected_object.suma}}">
+                        <input type="text" name="poznamka" placeholder="Popis:" value="{{selected_object.poznamka}}">
+                        <input type="text" name="pub_date" placeholder="Datum:" value='{{selected_object.pub_date}}'>
+                        <input type="submit" class="submit-add" value="Done">
+                    </form>
+                    
+                </div>
+              </div>
+    </div>
+     
+    <div id="adder" onclick="toggle_hidden_section('my-add-area')">
+    </div>
+    <div id="adder" onclick="toggle_hidden_section('my-add-area')">
+    </div>
+<script src="{% static 'mymoney/script.js' %}" defer></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'mymoney/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>mobile view</title>
+</head>
+<body>
+    
+    <div id="header">
+        <div class="logo">
+            <h1>{{vydavok_meno}}</h1>
+        </div>
+        <div class="hambar">
+            <i class="fa fa-bars" onclick="toggle_hidden_section('hidden-section')"></i>
+        </div>
+    </div>
+
+    <div id="body">
+        <div class="grid-container">
+            <div class="grid-item tooltip">
+                <div class="grid-item-value suma color-grid-top "><h1>SUMA</h1></div>
+                <div class="grid-item-value popis color-grid-top "><h1>POPIS</h1></div>
+                <div class="grid-item-value datum color-grid-top "><h1>DATUM</h1></div>  
+            </div>
+            {% for V in selected_vydavok.all %}
+            <div class="grid-item tooltip" onclick="edit_item(this)">
+                <span class="tooltiptext"><a onclick="redirect_to_edit(`{% url 'mymoney:uprav_polozky' V.id %}`)">Edit</a> | <a onclick="delete_item('{{V.id}}')">Delete</a></span>
+                <div class="grid-item-value suma"><p>{{V.suma}} </p></div>
+                <div class="grid-item-value popis"><p>{{V.poznamka }}  </p></div>
+                <div class="grid-item-value datum"><p>{{V.pub_date}} </p></div>  
+            </div>
+            {% endfor %}
+            
+            <div class="grid-item tooltip">
+                <div class="grid-item-value suma color-grid-top "><h1>{{sumup}}</h1></div>
+                <div class="grid-item-value popis color-grid-top "><p>SPOLU</p></div>
+                <div class="grid-item-value datum color-grid-top "><p>{% now "j.n.o" %}</p></div>  
+            </div>
+
+          </div>
+          <div id="my-add-area">
+            <div class="add-area">
+                <div class="form-field">
+                    <i class="fa fa-close" onclick="toggle_hidden_section('my-add-area')"></i>
+                    <form action="{% url 'mymoney:pridaj_polozky' vydavky_id %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="suma" placeholder="Suma:">
+                        <input type="text" name="poznamka" placeholder="Popis:">
+                        <input type="text" name="pub_date" placeholder="Datum:" value='{% now "j.n.o" %}'>
+                        <input type="submit" class="submit-add" value="Done">
+                    </form>
+                    
+                </div>
+              </div>
+          </div>  
+    </div>
+
+    <div id="hidden-section">    
+        <i class="fa fa-close" onclick="toggle_hidden_section('hidden-section')"></i>
+        <div class="itemy-wrapper">
+            <div class="itemy">
+                {% for V in list_of_vydavky%}
+                    {% if V.id == vydavky_id %}
+                        <a href="{% url 'mymoney:vydavky' vydavky_id=V.id %}"><h1 class="active-color-text">{{V.name}}</h1></a>
+                    {% else %}
+                        <a href="{% url 'mymoney:vydavky' vydavky_id=V.id %}"><h1>{{V.name}}</h1></a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+ 
+     
+    
+    <div id="adder" onclick="toggle_hidden_section('my-add-area')">
+        <h1>+</h1>
+    </div>
+    <div id="adder" onclick="toggle_hidden_section('my-add-area')">
+    </div>
+<script src="{% static 'mymoney/script.js' %}" defer></script>
+</body>
+</html>

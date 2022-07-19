@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'mymoney/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>mobile view</title>
+</head>
+<body>
+    
+    <div id="header">
+        <div class="logo">
+            <h1>PZ</h1>
+        </div>
+
+    </div>
+
+    <div class="listing">    
+        {% for V in list_of_vydavky%}
+            {% if V.id == vydavky_id %}
+                <a href="{% url 'mymoney:vydavky' vydavky_id=V.id %}"><h1 class="active-color-text">{{V.name}}</h1></a>
+            {% else %}
+                <a href="{% url 'mymoney:vydavky' vydavky_id=V.id %}"><h1>{{V.name}}</h1></a>
+            {% endif %}
+        {% endfor %}
+         
+    </div>
+<!-- <script src="{% static 'mymoney/script.js' %}" defer></script> -->
+</body>
+</html>

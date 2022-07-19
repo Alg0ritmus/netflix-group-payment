@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Yeseva+One&display=swap');
+
+:root{
+   --navy: #527E8D;
+   --dark-navy: #274954;
+   --light:#F2F5F6;
+   --active:#E6D36F;
+   --yeseva-font:'Yeseva One', cursive;
+   --paint-font:'Finger Paint', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body{
+    background-color: white;
+    font-family: var(--yeseva-font);
+}
+
+#header{
+    width: 100%;
+    height: 4em;
+    background-color:#527E8D;
+    display: flex;
+    flex-direction: row;
+}
+
+#header .logo{
+    line-height: 4em;
+    height: 4em;
+}
+
+#header .logo h1{
+    font-family: 'Finger Paint', bold;
+    font-weight: 1200;
+    color: var(--dark-navy);
+    font-size: 2.1em;
+    margin: auto 38px;
+    
+}
+
+
+
+#header .hambar{
+    text-align: right;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#header .hambar i{
+    width: 2em;
+    height: 2em;
+    margin: 0.6em 38px auto auto;
+    font-size: 1.8em;
+    color: white;
+    
+    
+    
+}
+
+
+#body{
+    height: calc(100% - 12em);
+    position: relative;
+}
+
+.grid-container{
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#adder{
+    width: 100%;
+    height: 4em;
+    background-color:#527E8D;
+    display: flex;
+    flex-direction: row;
+}
+
+#adder{
+    line-height: 4em;
+    height: 4em;
+    text-align: center;
+}
+
+#adder h1{
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.grid-container{
+    overflow-y: scroll; 
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink:0;
+       
+}
+
+.grid-item {
+    height: 2em;
+    font-size: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+    margin-bottom: 2px;
+    line-height: 2em;
+    height: 2em;
+    text-align: center;
+    flex-shrink:0
+  }
+
+  .grid-item-value{
+    width: 30%;
+    height: 100%;
+    background-color: #DBE6E9;
+    border: none;
+    color: var(--dark-navy);
+    padding: 0 8px 0 8px;
+  }
+
+
+  .grid-item-value p {
+    text-overflow: ellipsis;
+    font-size: 0.6em;
+  }
+
+  .grid-item-value h1 {
+    text-overflow: ellipsis;
+    font-size: 0.7em;
+  }
+
+  .suma{
+    background-color: #F2F5F6;
+  }
+
+
+#hidden-section {
+    position: absolute;
+    width: 100wv;
+    height: 100hv;
+    background-color: rgb(0 , 0 , 0, 0.88);
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+#hidden-section i {
+    position: absolute;
+    top:2vh;
+    left: 85vw;
+    font-size: 24px;
+    color: var(--light);
+    display: block;
+}
+
+.itemy-wrapper {
+    height: 70%;
+    display : flex;
+    align-items : center;
+}
+
+.itemy {
+    position: relative;
+    width: 70%;
+    height: 60%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: visible;  
+    
+}
+
+#hidden-section .itemy h1{
+    font-family: var(--yeseva-font);
+    color: var(--light);
+    margin-bottom: 1em;
+    text-overflow: ellipsis;
+    font-size: 2.2em;
+    height: 2em;
+    width: auto;
+    flex-shrink:0;
+
+}
+
+.active-color-text{
+    color: var(--active) !important;
+}
+
+
+.add-area{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-area i {
+    position: absolute;
+    top:2vh;
+    left: 90%;
+    font-size: 24px;
+    color: var(--dark-navy);
+    display: block;
+}
+
+.form-field {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    background-color: var(--light);
+
+}
+
+.form-field form{
+    overflow-y: scroll;
+    text-align: center;
+    height: 80%;
+    margin-top: 2em;
+    
+}
+
+
+.add-area input{
+    width: 80%;
+    height: auto;
+    font-size: 1.6em;
+    border: none;
+    border-bottom: 1px solid var(--dark-navy);
+    background-color: transparent;
+    color: var(--dark-navy);
+    margin-top: 2em;
+    flex-shrink: 0;
+}
+
+.submit-add{
+    height: 3.5em !important;
+    border: none;
+    color: var(--light) !important;
+    background-color: var(--dark-navy) !important;
+    outline: none;
+}
+
+#my-add-area{
+    display: none;
+}
+
+@media only screen and (min-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    max-width: 10em;
+    line-height: 1.2em;
+    font-size: 0.8em;
+    max-height: 1.4em;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    overflow: visible;
+
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 200%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: -1em;
+    border-width: 10px;
+    border-style: solid;
+    height: 2em;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+ /*  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  } */
+
+
+.color-grid-top {
+    background-color: #75a3b3 !important;
+    color: white;
+}
+
+.listing {
+    width: 80%;
+    max-height: 60%;
+    position: absolute;
+    margin-top: 4em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.listing > a > h1{
+    width: 100%;
+    height: 2em !important;
+    color: var(--dark-navy);
+}
+

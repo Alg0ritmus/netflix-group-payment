@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'mymoney/style.css' %}">
+    <title>skuska1</title>
+</head>
+<body>
+    
+    <h1>TOTO JE VYPIS VYDAVKOV</h1>
+    <p>{{ vydavky_string }}</p>
+   
+    {% for choice in list_of_vydavky.choice_set.all %}
+    <li>{{ choice.name }}</li>
+
+    <!-- 
+    href na stranku suvisi to s urls.py
+    https://docs.djangoproject.com/en/4.0/intro/tutorial03/    
+    --> 
+    <li><a href="{% url 'mymoney:vydavky' choice.id %}"></a></li>
+    {% endfor %}
+
+
+    <form action="{% url 'mymoney:pridaj_vydavky' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="vydavky" id="vydavky1">
+        <input type="submit" value="">
+    </form>
+    <h3> -------------</h3>
+    
+ <!--    MUSIM MAT ID VYDAVKU TERAZ JE TO HARDCODED NA 18!!!!!!!! -->
+    <form action="{% url 'mymoney:pridaj_polozky' 18 %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="suma" id="polozky1">
+        <input type="text" name="poznamka" id="polozky2">
+        <input type="text" name="pub_date" id="polozky3">
+        <input type="submit" value="">
+    </form>
+
+    <h3> -------------</h3>
+ <!--    MUSIM MAT ID VYDAVKU TERAZ JE TO HARDCODED NA 2!!!!!!!! -->
+ <form action="{% url 'mymoney:vymaz_polozky' 4 %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="">
+</form>
+   
+    
+</body>
+</html>
